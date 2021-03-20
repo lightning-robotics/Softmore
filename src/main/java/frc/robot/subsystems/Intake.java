@@ -5,17 +5,17 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-  private static TalonSRX leftMotor = new TalonSRX(Constants.IntakeConstants.LEFT_INTAKE_MOTOR);
-  private static TalonSRX rightMotor = new TalonSRX(Constants.IntakeConstants.RIGHT_INTAKE_MOTOR);
-  private static TalonSRX centerMotor = new TalonSRX(Constants.IntakeConstants.CENTER_INTAKE_MOTOR);
-  private static TalonSRX backMotor = new TalonSRX(Constants.IntakeConstants.BACK_INTAKE_MOTOR);
+  private static WPI_TalonSRX leftMotor = new WPI_TalonSRX(Constants.IntakeConstants.LEFT_INTAKE_MOTOR);
+  private static WPI_TalonSRX rightMotor = new WPI_TalonSRX(Constants.IntakeConstants.RIGHT_INTAKE_MOTOR);
+  private static WPI_TalonSRX centerMotor = new WPI_TalonSRX(Constants.IntakeConstants.CENTER_INTAKE_MOTOR);
+  private static WPI_TalonSRX backMotor = new WPI_TalonSRX(Constants.IntakeConstants.BACK_INTAKE_MOTOR);
 
 
   /** Creates a new Intake. */
@@ -28,9 +28,9 @@ public class Intake extends SubsystemBase {
 
 
   public void setSpeed(double speed) {
-    leftMotor.set(ControlMode.PercentOutput, speed);
-    rightMotor.set(ControlMode.PercentOutput, -speed);
-    centerMotor.set(ControlMode.PercentOutput, -speed - 0.1);
-    backMotor.set(ControlMode.PercentOutput, -speed);
+    leftMotor.set(ControlMode.PercentOutput, speed != 0 ? speed + 0.05 : speed);
+    rightMotor.set(ControlMode.PercentOutput, speed != 0 ? -speed - 0.05 : -speed);
+    centerMotor.set(ControlMode.PercentOutput, -speed);
+    backMotor.set(ControlMode.PercentOutput, speed != 0 ? -speed + 0.05 : -speed);
   }
 }

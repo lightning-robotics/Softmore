@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class TankDrive extends CommandBase {
@@ -40,8 +41,10 @@ public class TankDrive extends CommandBase {
     
 
   
-    RobotContainer.driveTrain.setRightMotorSpeed((driverAxis / -2) + (driverAxis2 / 2));
-    RobotContainer.driveTrain.setLeftMotorSpeed((driverAxis / -2) - (driverAxis2 / 2));
+    RobotContainer.driveTrain.setRightMotorSpeed((driverAxis / -2) - (driverAxis2 / 2));
+    RobotContainer.driveTrain.setLeftMotorSpeed((driverAxis / -2) + (driverAxis2 / 2));
+
+
   }
 
   // Called once the command ends or is interrupted.

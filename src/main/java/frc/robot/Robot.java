@@ -59,16 +59,22 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    System.out.println("jfjalfa");
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    System.out.println(m_autonomousCommand);
+    System.out.println(m_autonomousCommand == null);
+    m_autonomousCommand.schedule();
+    
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+    System.out.println("running command ");
+
+  }
 
   @Override
   public void teleopInit() {
@@ -79,7 +85,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    // RobotContainer.tankDrive.schedule();
+    RobotContainer.tankDrive.schedule();
     RobotContainer.intakeIn.schedule();
   }
 
